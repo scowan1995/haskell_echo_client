@@ -10,7 +10,7 @@ formatGet str = "GET /echo.php/?message="++str++" HTTP/1.1\n\r Hostname:10.62.0.
 main :: IO ()
 main = withSocketsDo $ do 
     [host,port,message] <- getArgs
-    addrinfos <- getAddrInfo Nothing (Just "10.62.0.207") (Just "8000")
+    addrinfos <- getAddrInfo Nothing (Just host ) (Just port)
     let serverAddr =  head addrinfos
     sock <- socket (addrFamily serverAddr) Stream defaultProtocol 
     connect sock (addrAddress serverAddr)
